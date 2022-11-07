@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express()
+const server = express()
 
 const router = require('./router');
 const { initializeDataBase } = require('./utils');
@@ -8,9 +8,9 @@ const PORT = 8000
 
 initializeDataBase()
 
-app.use(express.json())
+server.use(express.json())
 
-app.use((req, res, next) => {
+server.use((req, res, next) => {
   var origins = [
      'http://127.0.0.1:5500'
   ];
@@ -28,8 +28,8 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use("", router);
+server.use("", router);
 
-app.listen(PORT, () => {
-  console.log('Example app listening on port 8000!')
+server.listen(PORT, () => {
+  console.log('Example server listening on port 8000!')
 });
